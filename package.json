@@ -1,0 +1,18 @@
+{
+  "name": "wircho-utilities",
+  "version": "1.0.0",
+  "description": "Temporary personal set of utilities before they become part of other modules.",
+  "main": "index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wircho/NodeUtilities.git"
+  },
+  "author": "Adolfo Rodriguez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wircho/NodeUtilities/issues"
+  },
+  "homepage": "https://github.com/wircho/NodeUtilities#readme"
+}
