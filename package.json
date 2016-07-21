@@ -1,6 +1,6 @@
 {
   "name": "wircho-utilities",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Temporary personal set of utilities before they become part of other modules.",
   "main": "index.js",
   "scripts": {
