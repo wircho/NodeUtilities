@@ -10,7 +10,7 @@ module.exports = {
 	},
 	fallback: function(x,y) {
 	  return def(x) ? x : y;
-	}
+	},
 	err: function(error) {
 	  if (error.constructor === Error) {
 	    return error;
