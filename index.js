@@ -11,7 +11,14 @@ function fallback(x,y) {
   return def(x) ? x : y;
 }
 function err(error) {
-  if (error.constructor === Error) {
+  if (error.constructor === Error
+  	|| error.constructor === SyntaxError
+  	|| error.constructor === EvalError
+  	|| error.constructor === RangeError
+  	|| error.constructor === ReferenceError
+  	|| error.constructor === TypeError
+  	|| error.constructor === URIError
+  ) {
     return error;
   }else {
     var data = error.data;
