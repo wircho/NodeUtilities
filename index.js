@@ -10,6 +10,12 @@ function def(x) {
 function fallback(x,y) {
   return def(x) ? x : y;
 }
+function nullFallback(x,y) {
+  if (def(x) && x !== null) {
+    return x;
+  }
+  return y;
+}
 function err(error) {
   if (error.constructor === Error
   	|| error.constructor === SyntaxError
@@ -136,17 +142,18 @@ function rotate(array,amount) {
 
 module.exports = {
 //Utilities
-	pad:pad,
-	def:def,
-	fallback:fallback,
-	err:err,
-	errstr:errstr,
-	errdict:errdict,
-	geterr:geterr,
-	projf:projf,
-	projff:projff,
+	pad,
+	def,
+	fallback,
+  nullFallback,
+	err,
+	errstr,
+	errdict,
+	geterr,
+	projf,
+	projff,
 //Object utilities
-	mutate:mutate,
-	remove:remove,
-	rotate:rotate
+	mutate,
+	remove,
+	rotate
 };
