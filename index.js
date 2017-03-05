@@ -139,6 +139,20 @@ function rotate(array,amount) {
     return array;
   }
 }
+function loop(object,f) {
+  var result = new Array();
+  if (object.constructor === Array) {
+    for (var i = 0; i < object.length; i += 1) {
+      result.push(f(i,object[i]));
+    }
+  } else {
+    for (var prop in object) {
+      if(!object.hasOwnProperty(prop)) continue;
+      result.push(f(prop,object[prop]));
+    }
+  }
+  return result;
+}
 //Front End Utilities
 var defaults = {
   areAvailable: function() {
@@ -177,6 +191,7 @@ module.exports = {
 	mutate,
 	remove,
 	rotate,
+  loop,
 //Front End Utilities
   defaults
 //
