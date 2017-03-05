@@ -97,6 +97,17 @@ function projff() {
     return f.apply(this,array);
   }
 }
+//Concurrency Utilities
+function Maybe() {
+  var res = undefined;
+  var rej = undefined;
+  this.promise = new Promise(function(rs,rj) {
+    res = rs;
+    rej = rj;
+  });
+  this.resolve = res;
+  this.reject = rej;
+}
 //Object Utilities
 function mutate(object,newValues) {
   var copy = {};
@@ -187,6 +198,8 @@ module.exports = {
 	geterr,
 	projf,
 	projff,
+//Concurrency Utilities
+  Maybe,
 //Object Utilities
 	mutate,
 	remove,
