@@ -97,7 +97,7 @@ function projff() {
     return f.apply(this,array);
   }
 }
-//Object utilities
+//Object Utilities
 function mutate(object,newValues) {
   var copy = {};
   for (var property in object) {
@@ -139,6 +139,27 @@ function rotate(array,amount) {
     return array;
   }
 }
+//Front End Utilities
+var defaults = {
+  areAvailable: function() {
+    return def(Storage);
+  },
+  useCache: true,
+  "set": function(key, value) {
+    localStorage.setItem(key,value);
+    if (this.useCache) {
+      this.cache[key] = value;
+    }
+  },
+  "get": function(key) {
+    return fallback(this.cache[key],localStorage.getItem(key));
+  },
+  "remove": function(key) {
+    localStorage.removeItem(key);
+    delete this.cache[key];
+  }, 
+  "cache": {}
+}
 
 module.exports = {
 //Utilities
@@ -152,8 +173,11 @@ module.exports = {
 	geterr,
 	projf,
 	projff,
-//Object utilities
+//Object Utilities
 	mutate,
 	remove,
-	rotate
+	rotate,
+//Front End Utilities
+  defaults
+//
 };
