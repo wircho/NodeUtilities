@@ -65,6 +65,18 @@ function geterr(data) {
   }
   return !def(str) ? undefined : err(str);
 }
+function routeerr(res,rej,f) {
+  return f(function(data) {
+    var error = geterr(data);
+    if (def(error)) {
+      return rej(error);
+    } else {
+      return res(data);
+    }
+  }, function(error) {
+    return rej(error);
+  });
+}
 function projf() {
   var args = Array.prototype.slice.call(arguments);
   var f = args[0];
@@ -196,6 +208,7 @@ module.exports = {
 	errstr,
 	errdict,
 	geterr,
+  routeerr,
 	projf,
 	projff,
 //Concurrency Utilities
