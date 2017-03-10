@@ -65,17 +65,27 @@ function geterr(data) {
   }
   return !def(str) ? undefined : err(str);
 }
-function routeerr(res,rej,f) {
-  return f(function(data) {
+function errored_callbacks(res,rej) {
+  return function(data) {
     var error = geterr(data);
     if (def(error)) {
       return rej(error);
     } else {
       return res(data);
     }
-  }, function(error) {
-    return rej(error);
-  });
+  }
+}
+function errored(x) {
+  if (x.constructor === Promise) {
+    return new Promise(function(res,rej) {
+      x.then(errored_callbacks(res,rej),rej);
+    });
+  } else {
+    // Asume function
+    return new Promise(function(res,rej) {
+      x(errored_callbacks(res,rej),rej);
+    });
+  }
 }
 function projf() {
   var args = Array.prototype.slice.call(arguments);
@@ -208,7 +218,7 @@ module.exports = {
 	errstr,
 	errdict,
 	geterr,
-  routeerr,
+  errored,
 	projf,
 	projff,
 //Concurrency Utilities
